@@ -6,18 +6,14 @@ import java.util.List;
 
 
 public class Main {
-	private static final Comparator<Book> COMPARE_BY_PAGES_THEN_NATURAL = Comparator
-			.comparingInt(Book::getPages)
-			.thenComparing(Comparator.naturalOrder());
-
 	public static void main(String[] args) {
-		StudentJsonReader reader = new StudentJsonReader();
-		List<Student> students = reader.readStudentsFromFile("Data/students.json");
-		students.stream()
+		new StudentJsonReader()
+				.readStudentsFromFile("Data/students.json")
+				.stream()
 				.peek(student -> System.out.printf("Student: %s%n", student))
 				.map(Student::getBooks)
 				.flatMap(List::stream)
-				.sorted(Main.COMPARE_BY_PAGES_THEN_NATURAL)
+				.sorted(Comparator.comparingInt(Book::getPages).thenComparing(Comparator.naturalOrder()))
 				.distinct()
 				.filter(book -> book.getYear() > 2000)
 				.limit(3)
