@@ -31,7 +31,7 @@ public class Student {
 		return new Student(studentId, name, updatedBooks);
 	}
 
-	public Student whitAddedBooks(final Collection<Book> bookCollection) {
+	public Student withAddedBooks(final Collection<Book> bookCollection) {
 		if (bookCollection == null || bookCollection.isEmpty()) {
 			return this;
 		}
@@ -43,7 +43,7 @@ public class Student {
 		return new Student(studentId, name, updatedBooks);
 	}
 
-	public Student whitBooks(final Collection<Book> bookCollection) {
+	public Student withBooks(final Collection<Book> bookCollection) {
 		return new Student(studentId, name, bookCollection == null ? List.of() : new ArrayList<>(bookCollection));
 	}
 
@@ -70,6 +70,11 @@ public class Student {
 		}
 
 		return Objects.equals(studentId, otherStudent.studentId);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(studentId);
 	}
 
 	@Override
