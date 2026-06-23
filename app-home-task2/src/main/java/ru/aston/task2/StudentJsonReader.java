@@ -1,7 +1,8 @@
 package ru.aston.task2;
 
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,14 +25,14 @@ public class StudentJsonReader {
 			return List.of();
 		}
 
-		final File file = new File(filePath);
-		if (!file.exists() || !file.isFile()) {
+		final Path file = Path.of(filePath);
+		if (!Files.exists(file) || !Files.isRegularFile(file)) {
 			System.err.printf("Unable to find the file '%s'%n", filePath);
 			return List.of();
 		}
 
 		try {
-			List<Student> students = objectMapper.readValue(file, new TypeReference<>() {});
+			List<Student> students = objectMapper.readValue(file.toFile(), new TypeReference<>() {});
 
 			return (students != null) ? students : List.of();
 		}
