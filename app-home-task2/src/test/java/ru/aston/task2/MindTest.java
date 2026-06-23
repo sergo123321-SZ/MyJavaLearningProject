@@ -31,7 +31,7 @@ public class MindTest {
 
 	@Test
 	@DisplayName("Find the student with the oldest book")
-	void findOldestBookV1() {
+	void whenSearchingOldestBookUsingNestedStream_thenCorrectStudentAndBookReturned() {
 		Book expectedBook = new Book("Чувство и чувствительность", "Джейн Остин", 448, 1811);
 
 		Comparator<Student> byOldestBook = Comparator.comparingInt(
@@ -59,7 +59,7 @@ public class MindTest {
 
 	@Test
 	@DisplayName("Find the student with the oldest book with record")
-	void findOldestBookV2() {
+	void whenSearchingOldestBookUsingLocalRecord_thenCorrectPairReturned() {
 		Book expectedBook = new Book("Чувство и чувствительность", "Джейн Остин", 448, 1811);
 		record StudentBookPair(Student student, Book book) {}
 
@@ -78,7 +78,7 @@ public class MindTest {
 
 	@Test
 	@DisplayName("Find the student with the largest book collection")
-	void findStudentWithLargestBookCollection() {
+	void whenSearchingStudentWithLargestCollection_thenCorrectStudentWithEightBooksReturned() {
 		Comparator<Student> byBookCollectionSize = Comparator.comparingInt(student -> student.getBooks().size());
 
 		Student foundStudent =
@@ -93,7 +93,7 @@ public class MindTest {
 
 	@Test
 	@DisplayName("Find the book with the longest title")
-	void findBookWithLongestTitle() {
+	void whenSearchingBookWithLongestTitle_thenHarryPotterBookReturned() {
 		Comparator<Book> byTitleLength = Comparator.comparingInt(book -> book.getTitle().length());
 		Book expectedBook = new Book("Гарри Поттер и философский камень", "Джоан Роулинг", 352, 1997);
 
