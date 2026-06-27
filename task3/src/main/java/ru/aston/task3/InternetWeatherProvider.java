@@ -1,5 +1,6 @@
 package ru.aston.task3;
 
+
 public class InternetWeatherProvider implements WeatherProvider {
 
 	@Override

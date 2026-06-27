@@ -1,5 +1,6 @@
 package ru.aston.task3;
 
+
 public class TeamLeadApprover extends PurchaseApprover {
 	public TeamLeadApprover() {
 		super(500.0);

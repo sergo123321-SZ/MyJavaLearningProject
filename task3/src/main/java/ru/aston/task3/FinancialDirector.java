@@ -1,5 +1,6 @@
 package ru.aston.task3;
 
+
 public class FinancialDirector extends PurchaseApprover {
 	public FinancialDirector() {
 		super(-1.);
