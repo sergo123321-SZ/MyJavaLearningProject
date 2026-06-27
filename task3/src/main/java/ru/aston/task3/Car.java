@@ -25,10 +25,10 @@ public class Car implements Comparable<Car> {
 	}
 
 	public Car(@NotNull final String model, final int year, final double meter) {
-		if (year < 0) {
+		if (year <= 0) {
 			throw new IllegalArgumentException("Year MUST be > 0");
 		}
-		if (meter < 0) {
+		if (meter <= 0) {
 			throw new IllegalArgumentException("Meter MUST be > 0");
 		}
 
@@ -49,15 +49,20 @@ public class Car implements Comparable<Car> {
 
 		return Objects.equals(model, other.model)
 				&& year == other.year
-				&& Precision.equals(meter, other.meter);
+				&& Double.compare(meter, other.meter) == 0;
 	}
 
 	@Override
 	public int compareTo(@NotNull Car o) {
 		return Comparator.comparing(Car::getModel)
 				.thenComparing(Car::getYear)
-				.thenComparing(Car::getMeter)
+				.thenComparingDouble(Car::getMeter)
 				.compare(this, o);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(model, year, meter);
 	}
 
 	public static class Builder {

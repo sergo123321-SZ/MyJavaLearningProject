@@ -2,6 +2,7 @@ package ru.aston.task3;
 
 
 import lombok.Getter;
+import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -12,7 +13,10 @@ public class PurchaseRequest {
 	private final double amount;
 
 	PurchaseRequest(final @NotNull String purpose, final double amount) {
-		this.purpose = purpose;
+		if (amount <= 0) {
+			throw new IllegalArgumentException("Amount MUST be > 0");
+		}
+		this.purpose = Objects.requireNonNull(purpose, "Purpose MUST be provided");
 		this.amount = amount;
 	}
 }
