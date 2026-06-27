@@ -10,7 +10,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class PurchaseTest {
+public class PurchaseChainTest {
 	PurchaseApprover departmentDirector;
 	PurchaseApprover financialDirector;
 	PurchaseApprover teamLeadApprover;
